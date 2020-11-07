@@ -62,11 +62,14 @@ void Sender::send_load(byte start[],boolean state)
   }
 }
 
-void Sender::send_byte(byte *load)
+void Sender::send_byte(byte car)
 //send a sync signal + a start byte + load
 //load is an array of 8 bit, no more no less !!
 {
   boolean state; //state of the line
+  byte load[8];
+
+  this->ascii_to_array(car,load); //change ascii code to bits array
   
   send_sync();
   state = HIGH; //line must be high after sync
